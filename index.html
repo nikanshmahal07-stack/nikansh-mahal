@@ -42,6 +42,7 @@ nav a{
     text-decoration:none;
     margin:0 12px;
     font-size:16px;
+    transition:0.3s;
 }
 
 nav a:hover{
@@ -50,7 +51,7 @@ nav a:hover{
 
 /* Home */
 .hero{
-    min-height:500px;
+    min-height:550px;
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -60,44 +61,59 @@ nav a:hover{
     background:linear-gradient(135deg,#dbeafe,#f8fafc);
 }
 
-/* Photo */
 .profile-photo{
-    width:170px;
-    height:170px;
+    width:180px;
+    height:180px;
     border-radius:50%;
     object-fit:cover;
-    border:5px solid white;
-    box-shadow:0 5px 20px rgba(0,0,0,.2);
+    border:6px solid white;
+    box-shadow:0 8px 25px rgba(0,0,0,.2);
     margin-bottom:25px;
+    animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-10px);
+    }
 }
 
 .hero h1{
-    font-size:52px;
+    font-size:55px;
     margin-bottom:15px;
 }
 
 .hero p{
-    font-size:20px;
+    font-size:21px;
     margin-bottom:25px;
 }
 
 .btn{
     background:#2563eb;
     color:white;
-    padding:14px 25px;
-    border-radius:8px;
+    padding:14px 28px;
+    border-radius:10px;
     text-decoration:none;
-    font-size:16px;
+    font-size:17px;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+    background:#1d4ed8;
 }
 
 /* Sections */
 section{
-    padding:60px 20px;
+    padding:70px 20px;
     text-align:center;
 }
 
 section h2{
-    font-size:32px;
+    font-size:34px;
     margin-bottom:30px;
 }
 
@@ -107,36 +123,94 @@ section h2{
 }
 
 .about-text{
-    max-width:750px;
+    max-width:800px;
     margin:auto;
     line-height:1.8;
-    font-size:17px;
+    font-size:18px;
+}
+
+.about-text h3{
+    font-size:26px;
+    margin-bottom:15px;
+}
+
+.about-text p{
+    margin-bottom:15px;
 }
 
 .jatt{
     margin-top:25px;
-    font-size:25px;
+    font-size:28px;
     font-weight:bold;
 }
 
 /* Skills */
+#skills{
+    background:#f4f6f9;
+}
+
 .card-container{
     display:flex;
     justify-content:center;
     flex-wrap:wrap;
-    gap:20px;
+    gap:25px;
 }
 
 .card{
     background:white;
-    padding:25px;
-    width:250px;
-    border-radius:15px;
-    box-shadow:0 4px 15px rgba(0,0,0,.1);
+    padding:30px 25px;
+    width:270px;
+    border-radius:18px;
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
 }
 
 .card h3{
-    margin-bottom:10px;
+    margin-bottom:12px;
+    font-size:20px;
+}
+
+.card p{
+    line-height:1.6;
+}
+
+/* Social */
+#social{
+    background:white;
+}
+
+.social-buttons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-top:25px;
+}
+
+.social-btn{
+    display:inline-block;
+    color:white;
+    padding:14px 25px;
+    border-radius:10px;
+    text-decoration:none;
+    font-size:17px;
+    transition:0.3s;
+}
+
+.instagram{
+    background:#e1306c;
+}
+
+.whatsapp{
+    background:#25d366;
+}
+
+.social-btn:hover{
+    transform:scale(1.05);
 }
 
 /* Contact */
@@ -146,11 +220,11 @@ section h2{
 
 .contact-btn{
     display:inline-block;
-    margin-top:15px;
+    margin-top:20px;
     background:#111827;
     color:white;
     padding:14px 25px;
-    border-radius:8px;
+    border-radius:10px;
     text-decoration:none;
 }
 
@@ -169,14 +243,27 @@ footer{
         font-size:40px;
     }
 
-    nav a{
-        margin:0 6px;
-        font-size:14px;
+    .hero p{
+        font-size:18px;
     }
 
     .profile-photo{
-        width:140px;
-        height:140px;
+        width:150px;
+        height:150px;
+    }
+
+    nav a{
+        margin:0 5px;
+        font-size:14px;
+    }
+
+    section h2{
+        font-size:28px;
+    }
+
+    .card{
+        width:90%;
+        max-width:300px;
     }
 }
 </style>
@@ -189,13 +276,13 @@ footer{
     <a href="#home">Home</a>
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
+    <a href="#social">Social</a>
     <a href="#contact">Contact</a>
 </nav>
 
 <!-- Home -->
 <div class="hero" id="home">
 
-    <!-- Photo -->
     <img src="photo.jpg" alt="Nikansh Mahal" class="profile-photo">
 
     <h1>Nikansh Mahal</h1>
@@ -269,6 +356,31 @@ footer{
                 and Machine Learning.
             </p>
         </div>
+
+    </div>
+
+</section>
+
+<!-- Social Media -->
+<section id="social">
+
+    <h2>Connect With Me 🌐</h2>
+
+    <div class="social-buttons">
+
+        <a
+        href="https://www.instagram.com/nikansh_mahal/"
+        target="_blank"
+        class="social-btn instagram">
+        📸 Instagram
+        </a>
+
+        <a
+        href="https://wa.me/919410972362"
+        target="_blank"
+        class="social-btn whatsapp">
+        💬 WhatsApp
+        </a>
 
     </div>
 

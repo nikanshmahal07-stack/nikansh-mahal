@@ -3,65 +3,300 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nikansh Mahal</title>
+
+<title>Nikansh Mahal | Personal Website</title>
+
+<meta name="description" content="Nikansh Mahal - Personal website about programming, web development, C programming, AI and Machine Learning.">
+<meta name="keywords" content="Nikansh Mahal, programming, C programming, web development, AI ML">
+<meta name="author" content="Nikansh Mahal">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#f4f6f9;color:#222}
-nav{background:#111827;padding:18px;text-align:center;position:sticky;top:0}
-nav a{color:white;text-decoration:none;margin:0 12px;font-size:16px}
-.hero{min-height:450px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px 20px}
-.hero h1{font-size:52px;margin-bottom:15px}
-.hero p{font-size:20px;margin-bottom:25px}
-.btn{background:#2563eb;color:white;padding:14px 25px;border:none;border-radius:8px;text-decoration:none;font-size:16px}
-section{padding:60px 20px;text-align:center}
-section h2{font-size:32px;margin-bottom:30px}
-.card-container{display:flex;justify-content:center;flex-wrap:wrap;gap:20px}
-.card{background:white;padding:25px;width:250px;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,.1)}
-.card h3{margin-bottom:10px}
-#about{background:white}
-#contact{background:#e9eef7}
-.contact-btn{display:inline-block;margin-top:15px;background:#111827;color:white;padding:14px 25px;border-radius:8px;text-decoration:none}
-footer{background:#111827;color:white;text-align:center;padding:25px}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f6f9;
+    color:#222;
+}
+
+/* Navigation */
+nav{
+    background:#111827;
+    padding:18px;
+    text-align:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:0 12px;
+    font-size:16px;
+}
+
+nav a:hover{
+    color:#60a5fa;
+}
+
+/* Home */
+.hero{
+    min-height:500px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:40px 20px;
+    background:linear-gradient(135deg,#dbeafe,#f8fafc);
+}
+
+/* Photo */
+.profile-photo{
+    width:170px;
+    height:170px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid white;
+    box-shadow:0 5px 20px rgba(0,0,0,.2);
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-size:52px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:20px;
+    margin-bottom:25px;
+}
+
+.btn{
+    background:#2563eb;
+    color:white;
+    padding:14px 25px;
+    border-radius:8px;
+    text-decoration:none;
+    font-size:16px;
+}
+
+/* Sections */
+section{
+    padding:60px 20px;
+    text-align:center;
+}
+
+section h2{
+    font-size:32px;
+    margin-bottom:30px;
+}
+
+/* About */
+#about{
+    background:white;
+}
+
+.about-text{
+    max-width:750px;
+    margin:auto;
+    line-height:1.8;
+    font-size:17px;
+}
+
+.jatt{
+    margin-top:25px;
+    font-size:25px;
+    font-weight:bold;
+}
+
+/* Skills */
+.card-container{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    width:250px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.1);
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+/* Contact */
+#contact{
+    background:#e9eef7;
+}
+
+.contact-btn{
+    display:inline-block;
+    margin-top:15px;
+    background:#111827;
+    color:white;
+    padding:14px 25px;
+    border-radius:8px;
+    text-decoration:none;
+}
+
+/* Footer */
+footer{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+/* Mobile */
 @media(max-width:600px){
-.hero h1{font-size:40px}
-nav a{margin:0 6px;font-size:14px}
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    nav a{
+        margin:0 6px;
+        font-size:14px;
+    }
+
+    .profile-photo{
+        width:140px;
+        height:140px;
+    }
 }
 </style>
 </head>
+
 <body>
+
+<!-- Navigation -->
 <nav>
-<a href="#home">Home</a>
-<a href="#about">About</a>
-<a href="#skills">Skills</a>
-<a href="#contact">Contact</a>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
 </nav>
 
+<!-- Home -->
 <div class="hero" id="home">
-<h1>Nikansh Mahal</h1>
-<p>Welcome to my personal website 🚀</p>
-<a href="#about" class="btn">Explore More</a>
+
+    <!-- Photo -->
+    <img src="photo.jpg" alt="Nikansh Mahal" class="profile-photo">
+
+    <h1>Nikansh Mahal</h1>
+
+    <p>Welcome to my personal website 🚀</p>
+
+    <a href="#about" class="btn">Explore More</a>
+
 </div>
 
+<!-- About -->
 <section id="about">
-<h2>About Me 👤</h2>
-<p>Hello! My name is Nikansh Mahal. Welcome to my personal website. I am learning programming and web development.</p>
+
+    <h2>About Me 👤</h2>
+
+    <div class="about-text">
+
+        <h3>Hi, I'm Nikansh Mahal! 👋</h3>
+
+        <p>
+            I am a student interested in Programming,
+            Web Development, Artificial Intelligence and
+            Machine Learning.
+        </p>
+
+        <p>
+            I enjoy learning new technologies and creating
+            interesting and creative projects. 🚀
+        </p>
+
+        <p>
+            My goal is to improve my coding skills and build
+            useful websites and applications.
+        </p>
+
+        <div class="jatt">
+            16×2=8 💪 JATT
+        </div>
+
+    </div>
+
 </section>
 
+<!-- Skills -->
 <section id="skills">
-<h2>My Skills 💻</h2>
-<div class="card-container">
-<div class="card"><h3>💻 C Programming</h3><p>Learning C programming fundamentals.</p></div>
-<div class="card"><h3>🌐 Web Development</h3><p>Learning HTML, CSS and JavaScript.</p></div>
-<div class="card"><h3>🤖 AI & ML</h3><p>Exploring Artificial Intelligence and Machine Learning.</p></div>
-</div>
+
+    <h2>My Skills 💻</h2>
+
+    <div class="card-container">
+
+        <div class="card">
+            <h3>💻 C Programming</h3>
+            <p>
+                Learning C programming fundamentals
+                and problem solving.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🌐 Web Development</h3>
+            <p>
+                Learning HTML, CSS and JavaScript
+                to create websites.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🤖 AI & ML</h3>
+            <p>
+                Exploring Artificial Intelligence
+                and Machine Learning.
+            </p>
+        </div>
+
+    </div>
+
 </section>
 
+<!-- Contact -->
 <section id="contact">
-<h2>Contact Me 📩</h2>
-<p>You can contact me for more information.</p>
-<a href="mailto:your@email.com" class="contact-btn">Send Email</a>
+
+    <h2>Contact Me 📩</h2>
+
+    <p>
+        You can contact me for more information.
+    </p>
+
+    <a href="mailto:your@email.com" class="contact-btn">
+        Send Email
+    </a>
+
 </section>
 
-<footer><p>© 2026 Nikansh Mahal | All Rights Reserved</p></footer>
+<!-- Footer -->
+<footer>
+
+    <p>
+        © 2026 Nikansh Mahal | All Rights Reserved
+    </p>
+
+</footer>
+
 </body>
 </html>

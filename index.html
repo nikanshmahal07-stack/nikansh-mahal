@@ -24,7 +24,7 @@
     --card:#151522;
     --text:#ffffff;
     --sub:#bbbbbb;
-    --accent:#00e5ff;
+    --accent:#00b8cc;
     --border:#333344;
 }
 
@@ -33,7 +33,7 @@ body.light{
     --card:#ffffff;
     --text:#111111;
     --sub:#555555;
-    --accent:#0077ff;
+    --accent:#0077cc;
     --border:#dddddd;
 }
 
@@ -42,9 +42,10 @@ body{
     color:var(--text);
     line-height:1.6;
     transition:.4s;
+    filter:brightness(0.85);
 }
 
-/* NAVBAR */
+/* NAVIGATION */
 nav{
     position:fixed;
     top:0;
@@ -114,14 +115,19 @@ nav ul li a:hover{
     object-fit:cover;
     border-radius:50%;
     border:5px solid var(--accent);
-    box-shadow:0 0 35px var(--accent);
+    box-shadow:0 0 30px var(--accent);
     margin-bottom:25px;
     animation:float 3s ease-in-out infinite;
 }
 
 @keyframes float{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-15px);}
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-15px);
+    }
 }
 
 h1{
@@ -153,7 +159,7 @@ h1{
 
 .btn:hover{
     transform:translateY(-5px);
-    box-shadow:0 0 20px var(--accent);
+    box-shadow:0 0 18px var(--accent);
 }
 
 /* SECTIONS */
@@ -209,7 +215,7 @@ section{
 .skill-card:hover{
     transform:translateY(-10px);
     border-color:var(--accent);
-    box-shadow:0 0 25px rgba(0,229,255,.25);
+    box-shadow:0 0 20px rgba(0,184,204,.2);
 }
 
 .skill-icon{
@@ -246,6 +252,7 @@ section{
 .project-card:hover{
     transform:translateY(-10px) scale(1.02);
     border-color:var(--accent);
+    box-shadow:0 0 20px rgba(0,184,204,.2);
 }
 
 .project-icon{
@@ -639,4 +646,4 @@ function changeTheme(){
 </script>
 
 </body>
-</html>
+                </html>

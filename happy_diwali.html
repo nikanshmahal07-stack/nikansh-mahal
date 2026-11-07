@@ -4,98 +4,173 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Diwali - Nikansh Mahal</title>
+<title>शुभ दीपावली - Nikansh Mahal</title>
+
 <style>
 *{box-sizing:border-box}
 body{
- margin:0;min-height:100vh;text-align:center;color:white;
+ margin:0;
+ min-height:100vh;
+ padding:18px;
+ text-align:center;
+ color:white;
  font-family:Arial,sans-serif;
- background:radial-gradient(circle,#70209b,#16052e 75%);
- overflow-x:hidden;padding:20px;
+ background:linear-gradient(135deg,#21002f,#74134f,#e66b13);
 }
 .card{
- max-width:650px;margin:20px auto;padding:25px 18px;
- border:2px solid #ffd45c;border-radius:25px;
- background:#ffffff12;box-shadow:0 0 30px #ffb30055;
+ max-width:600px;
+ margin:20px auto;
+ padding:25px 18px;
+ border:2px solid #ffd65b;
+ border-radius:25px;
+ background:#280b3ee8;
+ box-shadow:0 0 30px #ffbd43;
 }
-h1{color:#ffdc62;font-size:clamp(35px,9vw,60px)}
-.hero{font-size:85px;margin:10px}
-.diyas{font-size:35px;letter-spacing:8px}
-p{font-size:19px;line-height:1.6}
+h1{
+ color:#ffdf70;
+ font-size:42px;
+ text-shadow:0 0 12px orange;
+}
+h2{color:#ffe6a5;line-height:1.5}
+p{font-size:19px;line-height:1.7}
+.diya{font-size:45px;margin:15px}
 button{
- border:0;border-radius:30px;padding:14px 22px;
- margin:8px;font-size:17px;font-weight:bold;
- background:#ffd34f;color:#42105d;cursor:pointer;
+ padding:14px 20px;
+ margin:8px;
+ border:0;
+ border-radius:30px;
+ background:#ffd34f;
+ color:#421044;
+ font-size:16px;
+ font-weight:bold;
 }
-button:active{transform:scale(.96)}
-#message{color:#ffe9a6;min-height:55px}
-.name{color:#ffd45c;font-size:25px;font-weight:bold}
+.name{
+ color:#ffdf70;
+ font-size:24px;
+ font-weight:bold;
+ margin:20px;
+}
+.sparkle{font-size:30px}
 </style>
 </head>
+
 <body>
 <div class="card">
- <div class="diyas">🪔 ✨ 🪔 ✨ 🪔</div>
- <div class="hero">😂🎉🪔</div>
- <h1>Happy Diwali!</h1>
- <h2>अरे भाई साहब! शुभ दीपावली! 😄</h2>
- <p>
- इस दिवाली मिठाई भी खाओ,<br>
- खुशियाँ भी बाँटो और टेंशन को छुट्टी पर भेज दो! 😂
- </p>
- <div class="hero">🎆🪔🎁</div>
- <p id="message">
- आपके जीवन में सुख, शांति और समृद्धि आए।
- </p>
- <button onclick="startGreeting()">▶ सुनिए मज़ेदार शुभकामनाएँ</button>
- <button onclick="stopGreeting()">⏹ आवाज़ बंद करें</button>
- <p>आप सभी को ढेर सारी शुभकामनाएँ!</p>
- <div class="name">From: Nikansh Mahal ❤️</div>
- <div class="diyas">🪔 ✨ 🪔 ✨ 🪔</div>
+
+<div class="diya">🪔✨🪔✨🪔</div>
+
+<h1>शुभ दीपावली!</h1>
+
+<h2>
+आपको और आपके पूरे परिवार को
+दीपावली की हार्दिक शुभकामनाएँ!
+</h2>
+
+<div class="diya">😂🎆🎁</div>
+
+<h2>अरे भाई साहब! पहले मिठाई खाइए! 😄</h2>
+
+<p>
+मिठाई इतनी खाइए कि मुँह मीठा हो जाए,
+और खुशियाँ इतनी बाँटिए कि पूरा मोहल्ला
+खुश हो जाए!
+</p>
+
+<p>
+इस दिवाली आपकी सारी परेशानियाँ छुट्टी पर जाएँ
+और खुशियाँ आपके घर लौटकर आएँ!
+</p>
+
+<div class="sparkle">🎇 🪔 🎇</div>
+
+<button onclick="playGreeting()">
+🔊 शुभकामनाएँ सुनें
+</button>
+
+<button onclick="stopGreeting()">
+⏹ आवाज़ बंद करें
+</button>
+
+<p>
+आपके जीवन में सुख, शांति और समृद्धि आए।
+</p>
+
+<div class="name">
+आपका अपना — Nikansh Mahal ❤️
+</div>
+
+<div class="diya">🪔✨🪔✨🪔</div>
+
 </div>
 
 <script>
-let audioCtx, musicTimer, speech;
+let musicTimer;
+let audioCtx;
 
-function startGreeting(){
+function playGreeting(){
  stopGreeting();
 
- const text =
- "अरे भाई साहब! क्या बात है! दिवाली आ गई! " +
- "मिठाई संभालकर रखना, क्योंकि मेहमान बिना बताए भी आ सकते हैं! " +
- "इस दिवाली खूब हँसिए, खुशियाँ बाँटिए और पटाखों से सुरक्षित दूरी रखिए। " +
- "आपके घर में सुख, शांति और समृद्धि आए। " +
- "हैप्पी दिवाली! ये शुभकामनाएँ हैं निकांश महल की तरफ से!";
+ let message =
+ "अरे भाई साहब! पहले मिठाई खाइए! " +
+ "मिठाई इतनी खाइए कि मुँह मीठा हो जाए, " +
+ "और खुशियाँ इतनी बाँटिए कि पूरा मोहल्ला खुश हो जाए! " +
+ "आपको और आपके पूरे परिवार को दीपावली की हार्दिक शुभकामनाएँ! " +
+ "आपका अपना निकांश महल! हैप्पी दिवाली!";
 
- speech = new SpeechSynthesisUtterance(text);
- speech.lang = "hi-IN";
- speech.rate = 0.92;
- speech.pitch = 1.12;
+ let speech = new SpeechSynthesisUtterance(message);
+ speech.lang="hi-IN";
+ speech.rate=0.9;
+ speech.pitch=1.15;
  speechSynthesis.speak(speech);
 
  try{
-   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-   if(audioCtx.state === "suspended") audioCtx.resume();
-   let notes = [523,659,784,659,587,698,880,784];
-   let i=0;
-   musicTimer = setInterval(()=>{
-     let osc=audioCtx.createOscillator();
-     let gain=audioCtx.createGain();
-     osc.type="sine";
-     osc.frequency.value=notes[i++ % notes.length];
-     gain.gain.setValueAtTime(0.0001,audioCtx.currentTime);
-     gain.gain.exponentialRampToValueAtTime(0.07,audioCtx.currentTime+0.03);
-     gain.gain.exponentialRampToValueAtTime(0.0001,audioCtx.currentTime+0.28);
-     osc.connect(gain);gain.connect(audioCtx.destination);
-     osc.start();osc.stop(audioCtx.currentTime+0.3);
-   },330);
- }catch(e){}
+  audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+
+  if(audioCtx.state==="suspended") audioCtx.resume();
+
+  let notes=[523,659,784,659,587,698,880,784];
+  let i=0;
+
+  musicTimer=setInterval(()=>{
+   if(!audioCtx || audioCtx.state==="closed") return;
+
+   let osc=audioCtx.createOscillator();
+   let gain=audioCtx.createGain();
+
+   osc.type="sine";
+   osc.frequency.value=notes[i++%notes.length];
+
+   gain.gain.setValueAtTime(0.001,audioCtx.currentTime);
+   gain.gain.exponentialRampToValueAtTime(
+    0.04,audioCtx.currentTime+0.04
+   );
+   gain.gain.exponentialRampToValueAtTime(
+    0.001,audioCtx.currentTime+0.3
+   );
+
+   osc.connect(gain);
+   gain.connect(audioCtx.destination);
+   osc.start();
+   osc.stop(audioCtx.currentTime+0.31);
+  },350);
+
+ }catch(error){}
 }
 
 function stopGreeting(){
  speechSynthesis.cancel();
- if(musicTimer) clearInterval(musicTimer);
- if(audioCtx){audioCtx.close();audioCtx=null;}
+
+ if(musicTimer){
+  clearInterval(musicTimer);
+  musicTimer=null;
+ }
+
+ if(audioCtx){
+  audioCtx.close();
+  audioCtx=null;
+ }
 }
 </script>
+
 </body>
 </html>

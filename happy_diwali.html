@@ -1,1 +1,101 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Diwali - Nikansh Mahal</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;text-align:center;color:white;
+ font-family:Arial,sans-serif;
+ background:radial-gradient(circle,#70209b,#16052e 75%);
+ overflow-x:hidden;padding:20px;
+}
+.card{
+ max-width:650px;margin:20px auto;padding:25px 18px;
+ border:2px solid #ffd45c;border-radius:25px;
+ background:#ffffff12;box-shadow:0 0 30px #ffb30055;
+}
+h1{color:#ffdc62;font-size:clamp(35px,9vw,60px)}
+.hero{font-size:85px;margin:10px}
+.diyas{font-size:35px;letter-spacing:8px}
+p{font-size:19px;line-height:1.6}
+button{
+ border:0;border-radius:30px;padding:14px 22px;
+ margin:8px;font-size:17px;font-weight:bold;
+ background:#ffd34f;color:#42105d;cursor:pointer;
+}
+button:active{transform:scale(.96)}
+#message{color:#ffe9a6;min-height:55px}
+.name{color:#ffd45c;font-size:25px;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="card">
+ <div class="diyas">🪔 ✨ 🪔 ✨ 🪔</div>
+ <div class="hero">😂🎉🪔</div>
+ <h1>Happy Diwali!</h1>
+ <h2>अरे भाई साहब! शुभ दीपावली! 😄</h2>
+ <p>
+ इस दिवाली मिठाई भी खाओ,<br>
+ खुशियाँ भी बाँटो और टेंशन को छुट्टी पर भेज दो! 😂
+ </p>
+ <div class="hero">🎆🪔🎁</div>
+ <p id="message">
+ आपके जीवन में सुख, शांति और समृद्धि आए।
+ </p>
+ <button onclick="startGreeting()">▶ सुनिए मज़ेदार शुभकामनाएँ</button>
+ <button onclick="stopGreeting()">⏹ आवाज़ बंद करें</button>
+ <p>आप सभी को ढेर सारी शुभकामनाएँ!</p>
+ <div class="name">From: Nikansh Mahal ❤️</div>
+ <div class="diyas">🪔 ✨ 🪔 ✨ 🪔</div>
+</div>
+
+<script>
+let audioCtx, musicTimer, speech;
+
+function startGreeting(){
+ stopGreeting();
+
+ const text =
+ "अरे भाई साहब! क्या बात है! दिवाली आ गई! " +
+ "मिठाई संभालकर रखना, क्योंकि मेहमान बिना बताए भी आ सकते हैं! " +
+ "इस दिवाली खूब हँसिए, खुशियाँ बाँटिए और पटाखों से सुरक्षित दूरी रखिए। " +
+ "आपके घर में सुख, शांति और समृद्धि आए। " +
+ "हैप्पी दिवाली! ये शुभकामनाएँ हैं निकांश महल की तरफ से!";
+
+ speech = new SpeechSynthesisUtterance(text);
+ speech.lang = "hi-IN";
+ speech.rate = 0.92;
+ speech.pitch = 1.12;
+ speechSynthesis.speak(speech);
+
+ try{
+   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+   if(audioCtx.state === "suspended") audioCtx.resume();
+   let notes = [523,659,784,659,587,698,880,784];
+   let i=0;
+   musicTimer = setInterval(()=>{
+     let osc=audioCtx.createOscillator();
+     let gain=audioCtx.createGain();
+     osc.type="sine";
+     osc.frequency.value=notes[i++ % notes.length];
+     gain.gain.setValueAtTime(0.0001,audioCtx.currentTime);
+     gain.gain.exponentialRampToValueAtTime(0.07,audioCtx.currentTime+0.03);
+     gain.gain.exponentialRampToValueAtTime(0.0001,audioCtx.currentTime+0.28);
+     osc.connect(gain);gain.connect(audioCtx.destination);
+     osc.start();osc.stop(audioCtx.currentTime+0.3);
+   },330);
+ }catch(e){}
+}
+
+function stopGreeting(){
+ speechSynthesis.cancel();
+ if(musicTimer) clearInterval(musicTimer);
+ if(audioCtx){audioCtx.close();audioCtx=null;}
+}
+</script>
+</body>
+  </html>
 

@@ -82,9 +82,13 @@ button{
 
 <div class="sparkle">🎇 🪔 🎇</div>
 
+<!-- ===== BACKGROUND MUSIC - FIXED ===== -->
 <audio id="bgMusic" autoplay loop>
   <source src="diwali_music.mp3" type="audio/mpeg">
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
 </audio>
+
+<button onclick="document.getElementById('bgMusic').play()">🔊 Music Bajayein</button>
 
 <script>
   const music = document.getElementById("bgMusic");
@@ -94,6 +98,7 @@ button{
     }, { once: true });
   });
 </script>
+<!-- ===== MUSIC END ===== -->
 
 <p>
 आपके जीवन में सुख, शांति और समृद्धि आए।

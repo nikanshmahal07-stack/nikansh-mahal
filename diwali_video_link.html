@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Diwali 🪔</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+  padding:18px; background:radial-gradient(circle at top,#4b1b08,#120806 65%,#050303);
+  color:#fff; font-family:Arial,sans-serif;
+}
+.card{width:min(100%,430px);text-align:center}
+h1{margin:0 0 14px;color:#ffd36b;font-size:clamp(27px,7vw,38px);text-shadow:0 0 16px #ff8c00}
+.video-wrap{
+  width:min(100%,320px); margin:auto; padding:5px; border-radius:18px;
+  background:linear-gradient(135deg,#ffe7a0,#b66a18,#fff0bd);
+  box-shadow:0 0 28px #ff9d2866;
+}
+video{display:block;width:100%;max-height:68vh;aspect-ratio:9/20;object-fit:contain;background:#000;border-radius:13px}
+.message{margin:15px 0 5px;font-size:25px;font-weight:900;color:#fff}
+.from{color:#ffd36b;font-size:15px;margin-top:9px}
+.hint{color:#e5c9a4;font-size:12px;margin-top:10px}
+</style>
+</head>
+<body>
+<main class="card">
+  <h1>🪔 Happy Diwali 🪔</h1>
+  <div class="video-wrap">
+    <video controls playsinline preload="metadata">
+      <source src="diwali_video.mp4" type="video/mp4">
+      Your browser does not support video playback.
+    </video>
+  </div>
+  <div class="message">✨ शुभ दीपावली ✨</div>
+  <div class="from">With best wishes · From Nikansh Mahal</div>
+  <div class="hint">Tap play to watch the Diwali video</div>
+</main>
+</body>
+</html>

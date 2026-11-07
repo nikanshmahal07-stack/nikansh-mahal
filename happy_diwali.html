@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>शुभ दीपावली - Nikansh Mahal</title>
-<button onclick="document.getElementById('bgMusic').play()">🔊 Music Bajayein</button>
+
 <style>
 *{box-sizing:border-box}
 body{
@@ -50,10 +50,58 @@ button{
  margin:20px;
 }
 .sparkle{font-size:30px}
+
+/* ===== PARDA / CURTAIN ===== */
+#parda{
+ position:fixed;
+ top:0; left:0;
+ width:100%; height:100%;
+ z-index:999;
+ background:linear-gradient(180deg,#7a0000,#c40000,#ff6a00);
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ padding:20px;
+ transition:0.8s;
+}
+#parda h1{
+ font-size:45px;
+ color:#ffdf70;
+ margin:10px 0;
+}
+#parda p{
+ font-size:20px;
+ color:white;
+}
+#openBtn{
+ padding:18px 30px;
+ font-size:20px;
+ border-radius:50px;
+ background:#ffd34f;
+ color:#421044;
+ border:3px solid white;
+ box-shadow:0 0 30px yellow;
+ cursor:pointer;
+ margin-top:20px;
+ animation: blink 1s infinite alternate;
+}
+@keyframes blink{from{transform:scale(1)} to{transform:scale(1.08)}}
 </style>
 </head>
 
 <body>
+
+<!-- ===== PARDA START ===== -->
+<div id="parda">
+  <div style="font-size:70px;">🎁🪔🎁</div>
+  <h1>आपके लिए एक Surprise है!</h1>
+  <p>Click here to be open<br>for Diwali Gift</p>
+  <button id="openBtn" onclick="openDiwali()">👆 Click Karke Kholo 👆</button>
+  <p style="font-size:16px; opacity:0.8;">🔊 Click karte hi Music bhi bajega</p>
+</div>
+<!-- ===== PARDA END ===== -->
+
 <div class="card">
 
 <div class="diya">🪔✨🪔✨🪔</div>
@@ -82,21 +130,11 @@ button{
 
 <div class="sparkle">🎇 🪔 🎇</div>
 
-<!-- ===== BACKGROUND MUSIC - FIXED ===== -->
-<audio id="bgMusic" autoplay loop>
+<!-- ===== BACKGROUND MUSIC ===== -->
+<audio id="bgMusic" loop>
   <source src="diwali_music.mp3" type="audio/mpeg">
   <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
 </audio>
-
-<script>
-  const music = document.getElementById("bgMusic");
-  music.play().catch(() => {
-    document.addEventListener("click", () => {
-      music.play();
-    }, { once: true });
-  });
-</script>
-<!-- ===== MUSIC END ===== -->
 
 <p>
 आपके जीवन में सुख, शांति और समृद्धि आए।
@@ -111,6 +149,19 @@ button{
 </div>
 
 <script>
+function openDiwali(){
+  // 1. Music bajao
+  var music = document.getElementById("bgMusic");
+  music.play();
+
+  // 2. Parda hatao
+  var parda = document.getElementById("parda");
+  parda.style.opacity = "0";
+  setTimeout(function(){
+    parda.style.display = "none";
+  }, 800);
+}
+
 let musicTimer;
 let audioCtx;
 

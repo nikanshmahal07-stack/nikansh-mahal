@@ -83,13 +83,18 @@ button{
 
 <div class="sparkle">🎇 🪔 🎇</div>
 
-<button onclick="playGreeting()">
-🔊 शुभकामनाएँ सुनें
-</button>
+<audio id="bgMusic" autoplay loop>
+  <source src="diwali_music.mp3" type="audio/mpeg">
+</audio>
 
-<button onclick="stopGreeting()">
-⏹ आवाज़ बंद करें
-</button>
+<script>
+  const music = document.getElementById("bgMusic");
+  music.play().catch(() => {
+    document.addEventListener("click", () => {
+      music.play();
+    }, { once: true });
+  });
+</script>
 
 <p>
 आपके जीवन में सुख, शांति और समृद्धि आए।
@@ -111,7 +116,7 @@ function playGreeting(){
  stopGreeting();
 
  let message =
- "अरे भाई साहब! पहले मिठाई खाइए! " +
+ "अरे भाई! पहले मिठाई खाइए! " +
  "मिठाई इतनी खाइए कि मुँह मीठा हो जाए, " +
  "और खुशियाँ इतनी बाँटिए कि पूरा मोहल्ला खुश हो जाए! " +
  "आपको और आपके पूरे परिवार को दीपावली की हार्दिक शुभकामनाएँ! " +

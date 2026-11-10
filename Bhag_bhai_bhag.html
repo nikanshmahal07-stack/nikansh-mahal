@@ -1,1 +1,281 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Bhag Bhai Bhag - Teacher Se Bacho!</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+ font-family:Arial,sans-serif;
+ background:#1a1a2e;
+ color:white;
+ text-align:center;
+ overflow:hidden;
+ user-select:none;
+ -webkit-tap-highlight-color:transparent;
+}
+.top{
+ padding:12px;
+}
+.top h1{font-size:26px;color:#ffdf70}
+.top p{font-size:14px;opacity:0.8}
+.score-box{
+ display:flex;
+ justify-content:center;
+ gap:15px;
+ margin-top:10px;
+}
+.score-box div{
+ background:#ffdf70;
+ color:#000;
+ padding:8px 15px;
+ border-radius:20px;
+ font-weight:bold;
+ font-size:16px;
+}
+#game{
+ position:relative;
+ width:100%;
+ max-width:600px;
+ height:380px;
+ margin:10px auto;
+ background:linear-gradient(#87CEEB,#e0f7ff 70%, #7ec850 70%, #5aa83a 70%);
+ border:3px solid #ffdf70;
+ border-radius:15px;
+ overflow:hidden;
+}
+#ground{
+ position:absolute;
+ bottom:0;left:0;width:100%;height:45px;
+ background:#5aa83a;
+ border-top:3px solid #3d7a24;
+}
+#player{
+ position:absolute;
+ bottom:45px;
+ left:50px;
+ font-size:55px;
+ transition:bottom 0.15s;
+ z-index:2;
+}
+#teacher{
+ position:absolute;
+ bottom:45px;
+ left:-5px;
+ font-size:55px;
+ z-index:2;
+}
+.obstacle{
+ position:absolute;
+ bottom:45px;
+ font-size:45px;
+ z-index:1;
+}
+#msg{
+ position:absolute;
+ top:50%;left:50%;
+ transform:translate(-50%,-50%);
+ background:rgba(0,0,0,0.85);
+ padding:20px;
+ border-radius:15px;
+ width:85%;
+ z-index:10;
+ display:none;
+}
+#msg h2{color:#ffdf70;font-size:24px;margin-bottom:10px}
+#msg p{font-size:16px;line-height:1.6}
+button{
+ padding:14px 25px;
+ border:0;border-radius:30px;
+ background:#ffd34f;
+ font-size:18px;font-weight:bold;
+ margin-top:10px;
+ cursor:pointer;
+}
+#tapBtn{
+ width:90%;
+ max-width:600px;
+ padding:18px;
+ font-size:20px;
+ background:#ff5722;
+ color:white;
+ border-radius:15px;
+ margin:10px auto;
+ display:block;
+}
+.small{font-size:13px;opacity:0.7;margin-top:8px}
+</style>
+</head>
+<body>
 
+<div class="top">
+<h1>🏃 BHAG BHAI BHAG! 🏃</h1>
+<p>Teacher Se Bacho, Warna Pakde Jaoge! 😂</p>
+<div class="score-box">
+<div>Score: <span id="score">0</span></div>
+<div>Best: <span id="best">0</span></div>
+</div>
+</div>
+
+<div id="game" onclick="jump()">
+<div id="teacher">👩‍🏫</div>
+<div id="player">🏃‍♂️</div>
+<div id="ground"></div>
+
+<div id="msg">
+<h2 id="msgTitle">Pakde Gaye! 😭</h2>
+<p id="msgText"></p>
+<button onclick="startGame()">🔁 Phir Se Bhago</button>
+</div>
+</div>
+
+<button id="tapBtn" onclick="jump()">👆 TAP KARO - JUMP MARO 👆</button>
+<p class="small">Nikansh Mahal ka Game | Dosto ko bhejo aur challenge karo!</p>
+
+<audio id="jumpSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
+
+<script>
+let player = document.getElementById("player");
+let game = document.getElementById("game");
+let scoreEl = document.getElementById("score");
+let bestEl = document.getElementById("best");
+let msg = document.getElementById("msg");
+let msgTitle = document.getElementById("msgTitle");
+let msgText = document.getElementById("msgText");
+
+let score = 0;
+let best = localStorage.getItem("bhagBest") || 0;
+bestEl.innerText = best;
+
+let isJumping = false;
+let gameOver = false;
+let gameStarted = false;
+let obstacles = [];
+let gameInterval;
+let obstacleInterval;
+
+let funnyLines = [
+ "Teacher boli - Beta, kal mummy ko lekar aana! 😂",
+ "Arre! Bench se takra gaya, ab to gaye!",
+ "Teacher ne jhadu maar di! Chalaak banna pada mehnga!",
+ "Bhai itna tez bhaga, phir bhi pakda gaya!",
+ "Ab to Principal ke paas jana padega! 😭",
+ "Homework nahi kiya tha na? Isliye pakde gaye!"
+];
+
+function jump(){
+ if(gameOver) return;
+ if(!gameStarted){
+   startGame();
+   return;
+ }
+ if(isJumping) return;
+ isJumping = true;
+ let pos = 45;
+ let up = setInterval(()=>{
+   pos += 12;
+   player.style.bottom = pos + "px";
+   if(pos >= 170){
+     clearInterval(up);
+     let down = setInterval(()=>{
+       pos -= 12;
+       player.style.bottom = pos + "px";
+       if(pos <= 45){
+         clearInterval(down);
+         player.style.bottom = "45px";
+         isJumping = false;
+       }
+     },20);
+   }
+ },20);
+}
+
+function createObstacle(){
+ if(gameOver) return;
+ let obs = document.createElement("div");
+ obs.className = "obstacle";
+ let items = ["🪑","🧹","📚","🪣","🪑"];
+ obs.innerText = items[Math.floor(Math.random()*items.length)];
+ obs.style.left = "600px";
+ game.appendChild(obs);
+ obstacles.push(obs);
+
+ let move = setInterval(()=>{
+   if(gameOver){
+     clearInterval(move);
+     return;
+   }
+   let left = parseInt(obs.style.left);
+   left -= 7;
+   obs.style.left = left + "px";
+
+   // Collision check
+   let playerBottom = parseInt(player.style.bottom || 45);
+   if(left > 30 && left < 105 && playerBottom < 95){
+     gameOverFunc();
+     clearInterval(move);
+   }
+
+   if(left < -50){
+     clearInterval(move);
+     obs.remove();
+     obstacles = obstacles.filter(o=>o!==obs);
+   }
+ },30);
+}
+
+function startGame(){
+ score = 0;
+ scoreEl.innerText = 0;
+ gameOver = false;
+ gameStarted = true;
+ msg.style.display = "none";
+ player.style.bottom = "45px";
+ obstacles.forEach(o=>o.remove());
+ obstacles = [];
+
+ clearInterval(gameInterval);
+ clearInterval(obstacleInterval);
+
+ gameInterval = setInterval(()=>{
+   if(!gameOver){
+     score++;
+     scoreEl.innerText = score;
+     if(score > best){
+       best = score;
+       bestEl.innerText = best;
+       localStorage.setItem("bhagBest", best);
+     }
+   }
+ },100);
+
+ obstacleInterval = setInterval(createObstacle, 1100);
+}
+
+function gameOverFunc(){
+ gameOver = true;
+ clearInterval(gameInterval);
+ clearInterval(obstacleInterval);
+ let line = funnyLines[Math.floor(Math.random()*funnyLines.length)];
+ msgTitle.innerText = "Pakde Gaye! 😭";
+ msgText.innerHTML = `<b>Score: ${score}</b><br>${line}<br><br>Best Score: ${best}`;
+ msg.style.display = "block";
+ gameStarted = false;
+}
+
+// Keyboard
+document.addEventListener("keydown", (e)=>{
+ if(e.code==="Space"){
+   e.preventDefault();
+   jump();
+ }
+});
+
+// Pehle se hi msg dikhao
+msgTitle.innerText = "Ready Ho? 🏃";
+msgText.innerHTML = "Teacher peeche padi hai!<br>TAP karke Jump maro aur bacho!<br><br>Bench, Jhadu, Kitab se bachna hai!";
+msg.style.display = "block";
+</script>
+</body>
+  </html>
